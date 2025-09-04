@@ -1378,111 +1378,26 @@
             });
         });
 
-        // Enhanced resume download with realistic content
-        document.getElementById('download-resume').addEventListener('click', function() {
-            const originalHTML = this.innerHTML;
-            this.innerHTML = `
-                <span class="flex items-center justify-center gap-3">
-                    <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                    Generating...
-                </span>
-            `;
-            
-            setTimeout(() => {
-                const resumeContent = `LICHI MAHAJAN - FULL STACK DEVELOPER
-================================================
-📧 lichi1696@gmail.com | 📱 +1 (703) 470-9695
-🌐 https://www.linkedin.com/in/lichi-m/ | 🐙 https://github.com/fruit1696
-
-PROFESSIONAL SUMMARY
-===================
-Dynamic Full Stack Developer with 4+ years of experience building scalable applications.
-Expert in React, Node.js, Java, and cloud technologies. Proven track record in startups
-and enterprise environments, specializing in microservices architecture and user experience.
-
-TECHNICAL SKILLS
-===============
-Frontend: React (90%), TypeScript (85%), Vue.js, CSS3, HTML5
-Backend: Node.js (88%), Java (92%), Python (82%), Express.js
-Database: PostgreSQL, MongoDB, DynamoDB, Redis
-Cloud & DevOps: AWS (EC2, Lambda, DynamoDB), Docker (78%), CI/CD (92%)
-Tools: Git, Webpack, Jest, Tableau, WEKA, Postman
-
-PROFESSIONAL EXPERIENCE
-======================
-🚀 SOFTWARE DEVELOPER | Lifetime Omics (2024 - Present)
-   • Architect microservices solutions for health-tech startup serving healthcare providers
-   • Develop scalable Java applications with AWS cloud integration
-   • Implement Docker containerization reducing deployment time by 50%
-   • Technologies: Java, AWS (EC2, DynamoDB, Lambda), Docker, Microservices
-
-💼 APPLICATION ASSOCIATE DEVELOPER | Accenture (2020 - 2024)
-   • Built Cloud Asset Management (CAM) platform serving 100K+ users
-   • Developed multi-tenant SaaS architecture for secure EC2 management
-   • Optimized application performance improving load times by 40%
-   • Led team of 3 developers and mentored junior team members
-   • Technologies: Vue.js, Python, PostgreSQL, AWS, Microservices
-
-FEATURED PROJECTS
-================
-🔐 Decentralized Document Verification System
-   Blockchain-based document authentication using Ethereum and IPFS
-   Tech Stack: React, Node.js, Solidity, IPFS, Web3
-   
-📊 Employee Turnover Analytics Platform
-   Advanced data mining with OLAP analysis and ML clustering
-   Tech Stack: Python, Tableau, WEKA, ETL, PostgreSQL
-   
-🤖 SmartFormFiller Automation Tool
-   AI-powered form automation with single-identifier input
-   Tech Stack: React, Azure, Express.js, MongoDB, ML APIs
-
-EDUCATION
-=========
-🎓 Bachelor of Science in Geology | [University Name]
-   Transitioned from Earth Sciences to Technology through self-directed learning
-
-ACHIEVEMENTS
-===========
-• Reduced deployment time by 50% through Docker containerization
-• Improved application performance by 40% through optimization
-• Successfully transitioned from Geology to Software Development
-• Built and deployed 3 production applications serving thousands of users
-
-CERTIFICATIONS & SKILLS
-======================
-• AWS Cloud Practitioner (pursuing)
-• Microservices Architecture Design
-• Agile/Scrum Development Methodologies
-• RESTful API Development
-• Database Design and Optimization`;
-                
-                const blob = new Blob([resumeContent], { type: 'text/plain' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'Lichi_Mahajan_Full_Stack_Developer_Resume.txt';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-                
-                this.innerHTML = `
-                    <span class="flex items-center justify-center gap-3">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                        Downloaded Successfully!
-                    </span>
-                `;
-                
-                setTimeout(() => {
-                    this.innerHTML = originalHTML;
-                }, 3000);
-            }, 1500);
-        });
+  
+  document.getElementById('download-resume').addEventListener('click', function() {
+    // File path (ensure Resume.pdf is in the same folder as your HTML, or provide correct path)
+    const pdfPath = 'resume.pdf';
+    
+    // Create a temporary <a> element to trigger download
+    const a = document.createElement('a');
+    a.href = pdfPath;
+    a.download = 'Lichi_Mahajan_Resume.pdf'; // Name for downloaded file
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    // Optional: Show temporary "Downloaded" feedback
+    const originalText = this.innerHTML;
+    this.innerHTML = 'Downloaded Successfully!';
+    setTimeout(() => {
+        this.innerHTML = originalText;
+    }, 2000);
+});             
 
         // Enhanced contact form
         document.getElementById('contact-form').addEventListener('submit', function(e) {
