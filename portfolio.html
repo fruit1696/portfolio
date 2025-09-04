@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lichi Mahajan - Software Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        },
+                        accent: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        :root {
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-dark: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
+            --shadow-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-colored: 0 25px 50px -12px rgba(102, 126, 234, 0.25);
+        }
+        
+        .gradient-hero {
+            background: linear-gradient(135deg, #0c0c0c 0%, #16213e 50%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 126, 234, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(118, 75, 162, 0.2) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .profile-glow {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-glow 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-glow::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(102, 126, 234, 0.3), transparent);
+            animation: rotate 6s linear infinite;
+        }
+        
+        .profile-image {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5),
+                           0 0 40px rgba(102, 126, 234, 0.3),
+                           0 0 60px rgba(102, 126, 234, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(118, 75, 162, 0.5),
+                           0 0 60px rgba(118, 75, 162, 0.3),
+                           0 0 90px rgba(118, 75, 162, 0.1);
+            }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .text-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-modern {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-colored);
+        }
+        
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+        
+        .btn-outline {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            padding: 14px 30px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .card-modern {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .card-modern:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+        
+        .card-modern:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .skill-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .tag-modern {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .tag-modern:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .project-image img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-image:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .nav-link {
+            position: relative;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: white;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 40;
+            padding: 20px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+            transform: translateY(0);
+        }
+        
+        .typing-animation {
+            overflow: hidden;
+            border-right: 3px solid rgba(102, 126, 234, 0.8);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: rgba(102, 126, 234, 0.8); }
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+
+    
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass-nav z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-gradient">Lichi Mahajan</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link font-medium">About</a>
+                    <a href="#skills" class="nav-link font-medium">Skills</a>
+                    <a href="#projects" class="nav-link font-medium">Projects</a>
+                    <a href="#experience" class="nav-link font-medium">Experience</a>
+                    <a href="#contact" class="nav-link font-medium">Contact</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="flex flex-col space-y-4">
+                <a href="#about" class="nav-link font-medium">About</a>
+                <a href="#skills" class="nav-link font-medium">Skills</a>
+                <a href="#projects" class="nav-link font-medium">Projects</a>
+                <a href="#experience" class="nav-link font-medium">Experience</a>
+                <a href="#contact" class="nav-link font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-hero min-h-screen flex items-center justify-center relative">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <div class="mb-8">
+                <div class="profile-container mx-auto mb-12">
+                    <div class="profile-glow">
+                        <img src="img.png" alt="Profile" class="profile-image">
+                    </div>    
+                </div>
+                <h1 class="text-6xl md:text-7xl font-black mb-6 typing-animation">Lichi Mahajan</h1>
+                <p class="text-2xl md:text-3xl mb-8 text-gradient font-bold">Full Stack Developer</p>
+                <p class="text-lg mb-12 text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    I build software that makes life easier, people love to use, and delivers clarity, reliability, and impact.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button id="download-resume" class="btn-modern">
+                    <span class="flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                        Download Resume
+                    </span>
+                </button>
+                <a href="#contact" class="btn-outline">
+                    Get In Touch
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-reveal">
+                <h2 class="text-5xl font-bold text-center mb-20 text-gradient">About Me</h2>
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-8 text-white">Heyy! I am Lichi</h3>
+                        <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                            From rocks to code → that’s my journey in a nutshell. 
+                            <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                            Geology taught me how the Earth is built, but software showed me how ideas are built. 
+                        </p>
+                            <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+
+                            I swapped stones for systems, and now I explore patterns and logic with the same curiosity that once kept me digging in the ground.
+</p>
+                        <p class="text-gray-300 mb-8 leading-relaxed text-lg">
+                            Beyond work, I live in stories → some I read, some I paint, some I write, and some I cook.
+                        </p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tag-modern">Adaptable Innovator</span>
+                            <span class="tag-modern">Ownership Mindset</span>
+                            <span class="tag-modern">Collaborative Builder</span>
+                            <span class="tag-modern">Impact-Focused</span>
+                            <span class="tag-modern">Curious Explorer</span>
+                        </div>
+                    </div>
+                    <div class="text-center">
+    <img src="img1.png" 
+         alt="About Me" 
+         class="w-80 h-140 mx-auto rounded-3xl object-cover shadow-2xl hover:scale-105 transition-all duration-500 hover:rotate-3" />
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-reveal">
+                <h2 class="text-5xl font-bold text-center mb-20 text-gradient">Skills & Expertise</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                                ⚛️
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Frontend</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">React</span>
+                                    <span class="text-gray-400">90%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">TypeScript</span>
+                                    <span class="text-gray-400">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Material-UI</span>
+                                    <span class="text-gray-400">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">CSS</span>
+                                    <span class="text-gray-400">85%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Responsive Design</span>
+                                    <span class="text-gray-400">95%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                                🔧
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Backend</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Java</span>
+                                    <span class="text-gray-400">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Node.js</span>
+                                    <span class="text-gray-400">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Express.js</span>
+                                    <span class="text-gray-400">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Python</span>
+                                    <span class="text-gray-400">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="88%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">REST APIs</span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">WebSockets</span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                                ☁️
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">DevOps & Cloud</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Cloud Platforms - AWS, GCP☁️ </span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Kubernetes</span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Monitoring & Logging 📊</span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Docker & Containers 🐳</span>
+                                    <span class="text-gray-400">78%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">CI/CD Pipelines ⚡</span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                     <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                                🗄️
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Databases & Data Management</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">MongoDB / NoSQL</span>
+                                    <span class="text-gray-400">95%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">MySQL / PostgreSQL / SQL</span>
+                                    <span class="text-gray-400">88%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium"> Query Optimization & Indexing </span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Caching / In-memory Storage</span>
+                                    <span class="text-gray-400">78%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Data Modeling & Schema Desig</span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                                🛠️
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Tools & Frameworks</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">OpenAI API 🤖 </span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">PyTest / Jest</span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Postman</span>
+                                    <span class="text-gray-400">82%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Figma </span>
+                                    <span class="text-gray-400">78%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Tableau </span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="card-modern p-8">
+                        <div class="text-center mb-8">
+                            <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center text-3xl text-white mb-6 hover:scale-110 transition-all">
+                            ✨
+                            </div>
+                            <h3 class="text-2xl font-bold text-white">Soft Powers</h3>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Problem Solving 💡</span>
+                                    <span class="text-gray-400">95%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Time Management ⏱️</span>
+                                    <span class="text-gray-400">98%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium"> Attention to Detail 🔍 </span>
+                                    <span class="text-gray-400">92%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="82%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Collaboration & Teamwork 🤝</span>
+                                    <span class="text-gray-400">99%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="78%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-3">
+                                    <span class="text-white font-medium">Empathy ❤️</span>
+                                    <span class="text-gray-400">100%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="skill-fill" data-width="92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 bg-gray-800">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-reveal">
+                <h2 class="text-5xl font-bold text-center mb-20 text-gradient">Featured Projects</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div class="card-modern overflow-hidden">
+                        <div class="project-image h-48">
+                            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><defs><linearGradient id='blockchainGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%234f46e5'/><stop offset='100%' style='stop-color:%237c3aed'/></linearGradient></defs><rect width='400' height='200' fill='url(%23blockchainGrad)'/><g fill='white' opacity='0.9'><rect x='50' y='70' width='60' height='60' rx='5'/><rect x='170' y='70' width='60' height='60' rx='5'/><rect x='290' y='70' width='60' height='60' rx='5'/><path d='M110 100 L170 100' stroke='white' stroke-width='3'/><path d='M230 100 L290 100' stroke='white' stroke-width='3'/></g><text x='200' y='40' fill='white' text-anchor='middle' font-size='16' font-weight='bold'>Blockchain Verification</text></svg>" 
+                                alt="Blockchain Project" 
+                                class="w-full h-full object-cover" />
+                            <div class="project-overlay">
+                                <button class="text-white font-semibold">View Project</button>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-4 text-white">Decentralized Document Verification</h3>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Revolutionary document verification system using blockchain technology to guarantee authenticity without central authority. Features digital signatures, IPFS storage, and smart contracts.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag-modern">React</span>
+                                <span class="tag-modern">Node.js</span>
+                                <span class="tag-modern">IPFS</span>
+                                <span class="tag-modern">Solidity</span>
+                                <span class="tag-modern">Ethereum</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <button class="text-blue-400 hover:text-blue-300 font-semibold hover:scale-105 transition-all">Live Demo</button>
+                                <button class="text-gray-400 hover:text-white font-semibold hover:scale-105 transition-all">GitHub</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-modern overflow-hidden">
+                        <div class="project-image h-48">
+                            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><defs><linearGradient id='analyticsGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%2310b981'/><stop offset='100%' style='stop-color:%2306b6d4'/></linearGradient></defs><rect width='400' height='200' fill='url(%23analyticsGrad)'/><g fill='white' opacity='0.9'><rect x='50' y='120' width='15' height='40'/><rect x='80' y='100' width='15' height='60'/><rect x='110' y='80' width='15' height='80'/><rect x='140' y='90' width='15' height='70'/><rect x='170' y='70' width='15' height='90'/><circle cx='250' cy='100' r='50' fill='none' stroke='white' stroke-width='3'/><path d='M250 100 L290 70' stroke='white' stroke-width='3'/><path d='M250 100 L220 130' stroke='white' stroke-width='3'/></g><text x='200' y='40' fill='white' text-anchor='middle' font-size='16' font-weight='bold'>Employee Analytics</text></svg>" 
+                                alt="Analytics Project" 
+                                class="w-full h-full object-cover" />
+                            <div class="project-overlay">
+                                <button class="text-white font-semibold">View Project</button>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-4 text-white">Employee Turnover Analytics</h3>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Advanced data mining platform performing OLAP-based multidimensional analysis. Features ETL data cleansing, WEKA clustering, and dynamic Tableau visualizations.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag-modern">Tableau</span>
+                                <span class="tag-modern">ETL</span>
+                                <span class="tag-modern">WEKA</span>
+                                <span class="tag-modern">Python</span>
+                                <span class="tag-modern">SQL</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <button class="text-blue-400 hover:text-blue-300 font-semibold hover:scale-105 transition-all">Live Demo</button>
+                                <button class="text-gray-400 hover:text-white font-semibold hover:scale-105 transition-all">GitHub</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-modern overflow-hidden">
+                        <div class="project-image h-48">
+                            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 200'><defs><linearGradient id='formGrad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23f59e0b'/><stop offset='100%' style='stop-color:%23ef4444'/></linearGradient></defs><rect width='400' height='200' fill='url(%23formGrad)'/><g fill='white' opacity='0.9'><rect x='100' y='60' width='200' height='120' rx='10' fill='none' stroke='white' stroke-width='3'/><rect x='120' y='80' width='160' height='15' rx='5'/><rect x='120' y='105' width='160' height='15' rx='5'/><rect x='120' y='130' width='160' height='15' rx='5'/><rect x='120' y='155' width='80' height='15' rx='5'/><path d='M50 100 L90 100' stroke='white' stroke-width='3' marker-end='url(%23arrow)'/></g><text x='200' y='40' fill='white' text-anchor='middle' font-size='16' font-weight='bold'>Smart Form Filler</text></svg>" 
+                                alt="Form Automation Project" 
+                                class="w-full h-full object-cover" />
+                            <div class="project-overlay">
+                                <button class="text-white font-semibold">View Project</button>
+                            </div>
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-xl font-bold mb-4 text-white">SmartFormFiller</h3>
+                            <p class="text-gray-300 mb-6 leading-relaxed">
+                                Intelligent form automation system that populates complex forms using single identifier input. Features data verification, Azure integration, and seamless user experience.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag-modern">React</span>
+                                <span class="tag-modern">Azure</span>
+                                <span class="tag-modern">Express</span>
+                                <span class="tag-modern">MongoDB</span>
+                                <span class="tag-modern">AI/ML</span>
+                            </div>
+                            <div class="flex gap-4">
+                                <button class="text-blue-400 hover:text-blue-300 font-semibold hover:scale-105 transition-all">Live Demo</button>
+                                <button class="text-gray-400 hover:text-white font-semibold hover:scale-105 transition-all">GitHub</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-gray-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="section-reveal">
+                <h2 class="text-5xl font-bold text-center mb-20 text-gradient">Professional Experience</h2>
+                <div class="space-y-10">
+                    <div class="card-modern p-10">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Software Developer</h3>
+                                <p class="text-blue-400 font-semibold text-lg">Lifetime Omics</p>
+                            </div>
+                            <span class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mt-4 lg:mt-0 self-start">
+                                2024 - Present
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            Leading full-stack development at a cutting-edge Bio-tech Startup. 
+                        </p>
+
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            Working at a startup meant wearing a lot of hats, and FAIRlyz QC was my biggest canvas. It’s a data-visualization and quality-control platform where scientists review, validate, and share their study data. When I joined, the app was still early and largely undocumented. Instead of waiting for step-by-step instructions, I took ownership digging through legacy files, untangling broken logic, and shaping a clear, maintainable structure.
+                        </p>
+
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            From there I kept the focus on real users. I talked directly with researchers and clients, mapped out the pain points in their workflow, and turned that feedback into action: simpler screens, fewer clicks, and features that quietly removed hours of manual effort. I introduced clean architecture, built smooth data-dictionary creation, QC validation, an AI-powered mapping assistant, and live progress updates so people always knew what was happening.
+                        </p>
+                    
+                       <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            Handling most of the work myself taught me how to balance speed with reliability, make decisions without constant supervision, and stay close to the customer. Over time the tool evolved into a scalable, dependable platform scientists could trust strengthening client confidence and helping LifeOmic win renewed contracts. The experience was intense but incredibly rewarding, giving me hands-on growth in ownership, problem-solving, customer empathy, and the ability to turn early-stage chaos into a polished product.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Microservices Architecture</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used microservices to isolate and independently manage heavy or critical backend processes in FAIRlyz QC. Key microservices included Dictionary QC, Mapping QC, DD Generation, OpenAI Mapping, and Sync. This architecture enabled independent scaling, fault isolation, faster deployments, and the use of different tech stacks for different services, ensuring the app remained responsive even while processing large research datasets.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Node.js</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used Node.js as the main backend runtime to build scalable and high-performance APIs for FAIRlyz QC. It handled file uploads, CSV processing, Dictionary QC, Mapping QC, OpenAI API calls, and communication between microservices. Using asynchronous, non-blocking I/O, Node.js ensured that the app remained responsive even while processing large research datasets, and it integrated smoothly with MongoDB, S3, and other services.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">WebSockets</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used WebSockets in FAIRlyz QC to provide real-time progress updates for long-running tasks like Dictionary QC and Mapping QC, enhancing the user experience by keeping users informed instantly and making the app feel responsive even with heavy data processing.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">JavaScript</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used JavaScript in FAIRlyz QC both on the frontend (React) for interactive dashboards, file uploads, and real-time updates, and on the backend (Node.js) for API handling, microservices orchestration, and OpenAI integration, ensuring a smooth and responsive user experience.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">AWS services</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used AWS services in FAIRlyz QC to build a scalable and secure system: ECR for storing Docker images, EC2 for running containers, and S3 for storing research datasets and images, ensuring efficient deployment and data handling for large-scale research data.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Docker</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used Docker in FAIRlyz QC to containerize microservices, ensuring consistent environments, easy deployment, and scalable execution across development, testing, and production.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">MongoDB</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used MongoDB in FAIRlyz QC to store user sessions, customer info, QC sync/quality scores, and OpenAI subscription/payment data, providing flexible, scalable, and fast storage for dynamic research and user data.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Express.js</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used Express.js in FAIRlyz QC to build the backend API layer, handling file uploads, microservice triggers, user sessions, and OpenAI integration, while using middleware for authentication, validation, and error handling.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">OpenAI APIs</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used the OpenAI API in FAIRlyz QC to automate manual mapping tasks, generating mapping files in seconds and intelligently suggesting encoded values for data dictionaries. This not only reduced user effort and errors, but also improved the overall workflow and user experience by making large-scale data curation faster and more reliable.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Figma</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used Figma in FAIRlyz QC to collaboratively design dashboards and workflows with managers and team members, incorporating their feedback in real-time and ensuring a consistent, intuitive, and user-friendly interface across the app.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">React.js</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used React.js in FAIRlyz QC to build dynamic and interactive dashboards, handle real-time updates, implement file upload forms, and ensure a consistent, user-friendly interface with reusable components.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Design Pattern</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                In FAIRlyz QC, I applied design patterns to make the system more maintainable, flexible, and extendable. I used the Singleton pattern for MongoDB client and server connections, optimizes resource usage and prevents redundant connections. Strategy pattern was implemented for workflows like Dictionary QC, Mapping QC, and code restoring, allowing dynamic selection of algorithms at runtime. Additionally, I applied design patterns wherever possible to keep navigation, microservices, and workflows modular, making it easier to maintain and extend the application as new features were added.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">SOLID Principles</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I refactored the entire codebase and followed SOLID principles, ensuring the system is modular, maintainable, and easy to understand. Each class and module now has a clear purpose and can be extended without modifying existing code, allowing future developers to quickly navigate, comprehend, and enhance the system without getting stuck. This approach reduces technical debt and significantly improves long-term maintainability.
+                                </div>
+                            </div>
+
+                            
+                           
+                            
+                            
+                            
+                        </div>
+                    </div>
+
+                    <div class="card-modern p-10">
+                        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-bold text-white mb-2">Application Associate Developer</h3>
+                                <p class="text-blue-400 font-semibold text-lg">Accenture</p>
+                            </div>
+                            <span class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-full text-sm font-medium mt-4 lg:mt-0 self-start">
+                                2020 - 2022
+                            </span>
+                        </div>
+                        <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            My professional career truly began at Accenture, and CAM was the project that shaped my foundation. CAM is a multi-tenant SaaS platform that lets enterprises provision and manage AWS EC2 instances without giving every user direct console access simplifying governance, strengthening security, and saving countless hours for cloud teams.
+                        
+                        </p>
+
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                           I joined the core backend team and worked extensively in Java & Spring Boot, building APIs and workflows that automated provisioning, enforced access policies, and surfaced meaningful monitoring data. We integrated deeply with AWS Lambda, DynamoDB, S3, Step Functions, and CloudWatch, designing flows that could scale across many client accounts while staying resilient and cost-efficient.
+                        
+                        </p>
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            Being on a cross-functional team meant daily collaboration with team members, managers, DevOps, QA, and security specialists. We brainstormed requirements, broke down epics, reviewed each other’s pull requests, and ran design reviews to keep quality high. I learned how to give and receive feedback constructively, adapt designs when requirements changed, and always keep the client’s workflow in mind.
+                        </p>
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            Beyond code, I contributed to sprint planning, created run-books for operations, and helped debug production incidents under tight SLAs experiences that taught me calm problem-solving, clear communication, and ownership even under pressure. CAM grew steadily, and with every release we delivered cleaner UX, faster provisioning times, and tighter compliance controls, which strengthened client trust in the platform.
+                        </p>
+
+                         <p class="text-gray-300 mb-6 leading-relaxed text-lg">
+                            This early role gave me far more than technical skills: I developed a habit of team-first thinking, learned how to collaborate across time zones, and built confidence to speak up in design discussions. It taught me that good software is as much about people and process as it is about code , a lesson I still carry into every project.
+                        </p>
+
+                        <div class="flex flex-wrap gap-3">
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Java</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block 
+                                bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 
+                                w-48">
+                               I use Java to build robust and scalable backend systems, implementing object-oriented designs, multithreading, and database interactions using Hibernate/JPA. I also leverage Spring Boot to develop RESTful APIs and microservices, enabling cloud deployments, high-performance processing, and maintainable enterprise-grade applications.
+                            </div>
+                            </div>
+
+                             
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">DynamoDB</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                               I used DynamoDB to store customer info and EC2 metadata, powering dashboards for billing and usage reports. An internal scheduling pipeline automated EC2 operations: the Provisioning Microservice updates DynamoDB, the Job Microservice pre-populates schedules, and the Schedule Dispatcher sends events to EventBridge. This ensured scalable, reliable, and automated EC2 management.
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">SQS</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used AWS SQS to handle asynchronous microservice requests, with a background ECS-based Provisioning Microservice picking up tasks to run Terraform scripts and provision EC2 instances per user configuration. This ensured scalable, decoupled, and non-blocking task execution.
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Lambda</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used an AWS Lambda (Python) to perform lightweight validation and create a provisioning record, enabling efficient, asynchronous processing by downstream microservices.
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Cloudwatch</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used AWS CloudWatch to monitor provisioning microservice metrics like success/failure counts, request volume, and average provisioning time. CloudWatch Alarms triggered notifications via SNS to Ops (email/Slack) and occasionally Lambda for auto-recovery, ensuring proactive and reliable infrastructure monitoring.
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Microservices</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I designed and built multiple microservices to handle independent backend processes
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">RestAPIs</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I developed RESTful APIs in CAM to enable secure and efficient communication between frontend and backend microservices, supporting user authentication, EC2 management, metrics, and audit logs. These APIs facilitated automation, real-time monitoring, and seamless microservice integration.
+                                </div>
+                            </div>
+                            <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Step Functions</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used AWS Step Functions to orchestrate complex workflows across multiple microservices. For example, EC2 provisioning involved sequential steps: validating requests via Lambda, updating metadata, running Terraform scripts through the Provisioning Microservice, and updating dashboards. Step Functions ensured reliable, fault-tolerant, and maintainable execution of these multi-step processes with clear state management and error handling.
+                                </div>
+                            </div>
+                             <div class="relative group">
+                                <span class="tag-modern cursor-pointer">Grafana</span>
+                                <div class="absolute left-0 -top-10 hidden group-hover:block bg-gray-800 text-white text-xs p-2 rounded shadow-lg z-50 w-48">
+                                I used Grafana to visualize system metrics and performance dashboards. It displayed real-time EC2 provisioning stats, success/failure counts, average provisioning time, and resource usage, enabling the team to monitor infrastructure health, detect anomalies, and make data-driven decisions quickly.
+                                </div>
+                            </div>
+
+                                                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-800">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="section-reveal">
+                <h2 class="text-5xl font-bold text-center mb-20 text-gradient">Get In Touch</h2>
+                <div class="grid lg:grid-cols-2 gap-16">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-8 text-white">Let's Work Together</h3>
+                        <p class="text-gray-300 mb-12 leading-relaxed text-lg">
+                           I love connecting with people who are building cool things. If you’re working on something exciting or swap ideas over coffee or just want to say Hi! Drop me a message anytime. Let’s create something awesome together!
+                        </p>
+                        <div class="space-y-8">
+                            
+                            <div class="flex items-center gap-6">
+    <!-- Email Icon -->
+    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0l8-8m-8 8l8 8"/>
+        </svg>
+    </div>
+
+    <!-- Email Text + Clickable Link -->
+    <div>
+        <p class="font-bold text-white text-lg">Email</p>
+        <a href="mailto:lichi1696@gmail.com" class="text-gray-300 hover:text-white">
+            lichi1696@gmail.com
+        </a>
+    </div>
+</div>
+
+
+                            <div class="flex items-center gap-6">
+    <!-- Phone Icon -->
+    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.47l.72 2.89a2 2 0 01-.45 1.79l-1.2 1.2a16.001 16.001 0 006.36 6.36l1.2-1.2a2 2 0 011.79-.45l2.89.72A2 2 0 0121 18.72V21a2 2 0 01-2 2h-1C9.163 23 3 16.837 3 9V5z"/>
+        </svg>
+    </div>
+
+    <!-- Phone Text + Clickable Link -->
+    <div>
+        <p class="font-bold text-white text-lg">Phone</p>
+        <a href="tel:+17034709695" class="text-gray-300 hover:text-white">+1 (703) 470-9695</a>
+    </div>
+</div>
+
+                            
+                            <div class="flex items-center gap-6">
+    <!-- GitHub Icon -->
+    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.29 9.43 7.86 10.96.58.1.79-.25.79-.55v-1.93c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.21 1.78 1.21 1.04 1.77 2.74 1.26 3.41.96.1-.75.41-1.26.75-1.55-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 015.8 0c2.2-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.08 0 4.39-2.68 5.36-5.24 5.64.42.37.8 1.1.8 2.22v3.3c0 .3.21.66.8.55A10.99 10.99 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/>
+        </svg>
+    </div>
+
+    <!-- GitHub Text + Clickable Link -->
+    <div>
+        <p class="font-bold text-white text-lg">GitHub</p>
+        <a href="https://github.com/fruit1696" target="_blank" class="text-gray-300 hover:text-white">
+            github.com/fruit1696
+        </a>
+    </div>
+</div>
+
+
+                            <div class="flex items-center gap-6">
+    <!-- LinkedIn Icon -->
+    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.77 0 5-2.24 5-5v-14c0-2.76-2.23-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.96 0-1.72-.79-1.72-1.72 0-.95.78-1.72 1.72-1.72.95 0 1.72.77 1.72 1.72 0 .93-.77 1.72-1.72 1.72zm13.5 11.28h-3v-5.4c0-1.29-.02-2.95-1.79-2.95-1.79 0-2.06 1.4-2.06 2.85v5.5h-3v-10h2.89v1.36h.04c.4-.75 1.39-1.54 2.86-1.54 3.06 0 3.62 2.02 3.62 4.65v5.53z"/>
+        </svg>
+    </div>
+
+    <!-- LinkedIn Text + Clickable Link -->
+    <div>
+        <p class="font-bold text-white text-lg">LinkedIn</p>
+        <a href="https://www.linkedin.com/in/lichi-m/" target="_blank" class="text-gray-300 hover:text-white">
+            linkedin.com/in/lichi-m
+        </a>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                    <div class="contact-form p-8">
+                        <form id="contact-form" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-white mb-3">Name</label>
+                                <input type="text" class="form-input w-full" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-white mb-3">Email</label>
+                                <input type="email" class="form-input w-full" placeholder="your@email.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-white mb-3">Message</label>
+                                <textarea rows="5" class="form-input w-full resize-none" placeholder="Your message..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn-modern w-full">
+                                <span class="flex items-center justify-center gap-3">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    Send Message
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-16">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold mb-4 text-gradient">Lichi Mahajan</h3>
+                <p class="text-gray-400 mb-8 text-lg">Full Stack Developer passionate about creating exceptional digital experiences</p>
+                <div class="flex justify-center gap-6">
+                    <button class="w-16 h-16 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 text-2xl border border-gray-700 hover:border-transparent">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M12 .297c-6.63 0-12 5.373-12 12 
+    0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
+    0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 
+    1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.304 3.492.997.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 
+    0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 
+    0 0 1.005-.322 3.3 1.23a11.5 11.5 0 013.003-.404c1.018.005 2.045.138 3.003.404 
+    2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 
+    1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.435.372.81 1.102.81 2.222 
+    0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 
+    17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+  </svg>
+</button>
+
+                    <button class="w-16 h-16 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 text-2xl border border-gray-700 hover:border-transparent">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 448 512" class="w-6 h-6 text-blue-500">
+    <path d="M100.28 448H7.4V148.9h92.88zm-46.44-340.7C24.1 107.3 0 83.2 0 53.6 0 24 24.1 0 53.6 0c29.5 0 53.6 24 53.6 53.6 0 29.6-24.1 53.7-53.6 53.7zM447.9 448h-92.4V302.4c0-34.7-.7-79.4-48.4-79.4-48.4 0-55.8 37.8-55.8 76.9V448h-92.4V148.9h88.7v40.8h1.3c12.4-23.5 42.7-48.4 87.8-48.4 93.9 0 111.2 61.8 111.2 142.3V448z"/>
+  </svg>
+</button>
+
+                    <button class="w-16 h-16 bg-gray-800 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 rounded-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 text-2xl border border-gray-700 hover:border-transparent">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 320 512" class="w-6 h-6 text-blue-600">
+    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06H295V6.26S277.52 0 256.36 0c-73.22 0-121.36 44.38-121.36 124.72v70.62H86.41V288h48.59v224h92.66V288z"/>
+  </svg>
+</button>
+
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-gray-400">&copy;2025 Lichi Mahajan. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Enhanced resume download with realistic content
+        document.getElementById('download-resume').addEventListener('click', function() {
+            const originalHTML = this.innerHTML;
+            this.innerHTML = `
+                <span class="flex items-center justify-center gap-3">
+                    <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Generating...
+                </span>
+            `;
+            
+            setTimeout(() => {
+                const resumeContent = `LICHI MAHAJAN - FULL STACK DEVELOPER
+================================================
+📧 lichi1696@gmail.com | 📱 +1 (703) 470-9695
+🌐 https://www.linkedin.com/in/lichi-m/ | 🐙 https://github.com/fruit1696
+
+PROFESSIONAL SUMMARY
+===================
+Dynamic Full Stack Developer with 4+ years of experience building scalable applications.
+Expert in React, Node.js, Java, and cloud technologies. Proven track record in startups
+and enterprise environments, specializing in microservices architecture and user experience.
+
+TECHNICAL SKILLS
+===============
+Frontend: React (90%), TypeScript (85%), Vue.js, CSS3, HTML5
+Backend: Node.js (88%), Java (92%), Python (82%), Express.js
+Database: PostgreSQL, MongoDB, DynamoDB, Redis
+Cloud & DevOps: AWS (EC2, Lambda, DynamoDB), Docker (78%), CI/CD (92%)
+Tools: Git, Webpack, Jest, Tableau, WEKA, Postman
+
+PROFESSIONAL EXPERIENCE
+======================
+🚀 SOFTWARE DEVELOPER | Lifetime Omics (2024 - Present)
+   • Architect microservices solutions for health-tech startup serving healthcare providers
+   • Develop scalable Java applications with AWS cloud integration
+   • Implement Docker containerization reducing deployment time by 50%
+   • Technologies: Java, AWS (EC2, DynamoDB, Lambda), Docker, Microservices
+
+💼 APPLICATION ASSOCIATE DEVELOPER | Accenture (2020 - 2024)
+   • Built Cloud Asset Management (CAM) platform serving 100K+ users
+   • Developed multi-tenant SaaS architecture for secure EC2 management
+   • Optimized application performance improving load times by 40%
+   • Led team of 3 developers and mentored junior team members
+   • Technologies: Vue.js, Python, PostgreSQL, AWS, Microservices
+
+FEATURED PROJECTS
+================
+🔐 Decentralized Document Verification System
+   Blockchain-based document authentication using Ethereum and IPFS
+   Tech Stack: React, Node.js, Solidity, IPFS, Web3
+   
+📊 Employee Turnover Analytics Platform
+   Advanced data mining with OLAP analysis and ML clustering
+   Tech Stack: Python, Tableau, WEKA, ETL, PostgreSQL
+   
+🤖 SmartFormFiller Automation Tool
+   AI-powered form automation with single-identifier input
+   Tech Stack: React, Azure, Express.js, MongoDB, ML APIs
+
+EDUCATION
+=========
+🎓 Bachelor of Science in Geology | [University Name]
+   Transitioned from Earth Sciences to Technology through self-directed learning
+
+ACHIEVEMENTS
+===========
+• Reduced deployment time by 50% through Docker containerization
+• Improved application performance by 40% through optimization
+• Successfully transitioned from Geology to Software Development
+• Built and deployed 3 production applications serving thousands of users
+
+CERTIFICATIONS & SKILLS
+======================
+• AWS Cloud Practitioner (pursuing)
+• Microservices Architecture Design
+• Agile/Scrum Development Methodologies
+• RESTful API Development
+• Database Design and Optimization`;
+                
+                const blob = new Blob([resumeContent], { type: 'text/plain' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Lichi_Mahajan_Full_Stack_Developer_Resume.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                this.innerHTML = `
+                    <span class="flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Downloaded Successfully!
+                    </span>
+                `;
+                
+                setTimeout(() => {
+                    this.innerHTML = originalHTML;
+                }, 3000);
+            }, 1500);
+        });
+
+        // Enhanced contact form
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalHTML = submitBtn.innerHTML;
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            if (name && email && message) {
+                submitBtn.innerHTML = `
+                    <span class="flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                        </svg>
+                        Sending...
+                    </span>
+                `;
+                
+                setTimeout(() => {
+                    alert(`Thank you ${name}! Your message has been received. I'll get back to you soon at ${email}.`);
+                    this.reset();
+                    submitBtn.innerHTML = originalHTML;
+                }, 1500);
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Skills animation
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-fill');
+                    skillBars.forEach((bar, index) => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, index * 200 + 500);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+            skillsObserver.observe(skillsSection);
+        }
+
+        // Project and social button interactions
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Live Demo')) {
+                button.addEventListener('click', () => {
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                        window.open('#', '_blank');
+                    }, 100);
+                });
+            }
+            if (button.textContent.includes('GitHub')) {
+                button.addEventListener('click', () => {
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = 'scale(1)';
+                        window.open('#', '_blank');
+                    }, 100);
+                });
+            }
+        });
+
+        // Footer social buttons
+        document.querySelectorAll('footer button').forEach((button, index) => {
+            const platforms = ['https://github.com/fruit1696', 'https://www.linkedin.com/in/lichi-m/', 'https://www.facebook.com/profile.php?id=100008849027042'];
+            button.addEventListener('click', () => {
+                window.open(platforms[index], '_blank');
+            });
+        });
+
+        // Typing animation for hero title
+        const heroTitle = document.querySelector('.typing-animation');
+        if (heroTitle) {
+            const text = heroTitle.textContent;
+            heroTitle.textContent = '';
+            heroTitle.style.width = '0';
+            
+            setTimeout(() => {
+                heroTitle.style.width = '100%';
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        heroTitle.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 100);
+                    }
+                };
+                typeWriter();
+            }, 1000);
+        }
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.gradient-hero');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
